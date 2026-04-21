@@ -1,0 +1,18 @@
+{
+  "name": "Accountability App",
+  "short_name": "Accountable",
+  "description": "Daily tracker for goals, scripture, and journaling",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#555555",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
