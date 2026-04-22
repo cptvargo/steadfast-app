@@ -32,6 +32,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_API_BIBLE_KEY: ${{ secrets.VITE_API_BIBLE_KEY }}
+          VITE_ANTHROPIC_API_KEY: ${{ secrets.VITE_ANTHROPIC_API_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

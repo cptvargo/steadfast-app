@@ -1,85 +1,86 @@
-/* Feminine Theme */
+/* ─── FEMININE / GRACE ─────────────────────────────────────────────────── */
 [data-theme="feminine"] {
-  --color-bg: #fff0f5;
-  --color-surface: #ffe4ef;
-  --color-primary: #e91e8c;
-  --color-primary-light: #f48fb1;
-  --color-text: #4a2040;
-  --color-text-muted: #9c6b8a;
-  --color-border: #f9a8d4;
-  --color-accent: #f472b6;
+  /* Background: cream blush → soft rose mist → warm parchment — mirrors the logo's misty mountain gradient */
+  --gradient-bg: linear-gradient(
+    160deg,
+    #fdf4f5 0%,
+    #f5e4e8 30%,
+    #eedadf 60%,
+    #faf3ee 100%
+  );
+  --color-bg: #fdf4f5;
+
+  /* Cards — warm white glass with blush tint */
+  --color-surface:       rgba(255, 255, 255, 0.84);
+  --color-surface-alt:   rgba(253, 244, 245, 0.72);
+  --color-surface-solid: #fdf8f8;
+
+  /* Dusty mauve rose — pulled from the "S" in the logo */
+  --color-primary:          #b56878;
+  --color-primary-light:    #d4a0ac;
+  --color-primary-glow:     rgba(181, 104, 120, 0.26);
+  --color-primary-glow-bg:  rgba(181, 104, 120, 0.08);
+
+  /* Text — deep plum (matches the dark wordmark) */
+  --color-text:       #2a1018;
+  --color-text-muted: #8a6070;
+
+  /* Borders — soft dusty rose */
+  --color-border: rgba(181, 104, 120, 0.2);
+
+  /* Accent — warm copper/gold from the botanical leaves */
+  --color-accent:  #c4906a;
+  --color-success: #6a9e7f;
+
+  /* Depth */
+  --backdrop:     blur(24px) saturate(1.8);
+  --shadow-card:  0 4px 32px rgba(181, 104, 120, 0.14), 0 1px 6px rgba(42, 16, 24, 0.06);
+
+  /* Dusty mauve → warm copper — used for buttons, progress ring, scripture hero */
+  --gradient-accent: linear-gradient(135deg, #b56878 0%, #c4906a 100%);
+  --theme-dot:       linear-gradient(135deg, #b56878, #c4906a);
 }
 
-/* Neutral Theme */
+/* ─── NEUTRAL / MODERN ─────────────────────────────────────────────────── */
 [data-theme="neutral"] {
-  --color-bg: #ffffff;
-  --color-surface: #f5f5f5;
-  --color-primary: #555555;
-  --color-primary-light: #999999;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b6b6b;
-  --color-border: #dddddd;
-  --color-accent: #888888;
+  --color-bg: #0f172a;
+  --gradient-bg: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --color-surface: rgba(30, 41, 59, 0.85);
+  --color-surface-alt: rgba(15, 23, 42, 0.65);
+  --color-surface-solid: #1e293b;
+  --color-primary: #818cf8;
+  --color-primary-light: #c7d2fe;
+  --color-primary-glow: rgba(129, 140, 248, 0.28);
+  --color-primary-glow-bg: rgba(129, 140, 248, 0.09);
+  --color-text: #e2e8f0;
+  --color-text-muted: #64748b;
+  --color-border: rgba(129, 140, 248, 0.18);
+  --color-accent: #f59e0b;
+  --color-success: #34d399;
+  --backdrop: blur(20px) saturate(1.6);
+  --shadow-card: 0 4px 32px rgba(0, 0, 0, 0.45), 0 1px 6px rgba(0, 0, 0, 0.25);
+  --gradient-accent: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  --theme-dot: linear-gradient(135deg, #6366f1, #818cf8);
 }
 
-/* Masculine Theme */
+/* ─── MASCULINE / EDGE ─────────────────────────────────────────────────── */
 [data-theme="masculine"] {
-  --color-bg: #0d0d0d;
-  --color-surface: #1a1a2e;
-  --color-primary: #1e90ff;
-  --color-primary-light: #63b3f7;
-  --color-text: #e8e8e8;
-  --color-text-muted: #8899aa;
-  --color-border: #2a3a4a;
-  --color-accent: #0066cc;
-}
-
-/* Base resets using variables */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-button {
-  cursor: pointer;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  border-radius: 6px;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.95rem;
-}
-
-button.primary {
-  background: var(--color-primary);
-  color: #fff;
-  border-color: var(--color-primary);
-}
-
-input,
-textarea {
-  background: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.95rem;
-  width: 100%;
-}
-
-input:focus,
-textarea:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 1px;
+  --color-bg: #020617;
+  --gradient-bg: linear-gradient(145deg, #020617 0%, #0c1a2e 55%, #020617 100%);
+  --color-surface: rgba(12, 26, 46, 0.88);
+  --color-surface-alt: rgba(2, 6, 23, 0.65);
+  --color-surface-solid: #0c1a2e;
+  --color-primary: #22d3ee;
+  --color-primary-light: #67e8f9;
+  --color-primary-glow: rgba(34, 211, 238, 0.28);
+  --color-primary-glow-bg: rgba(34, 211, 238, 0.08);
+  --color-text: #f0f9ff;
+  --color-text-muted: #475569;
+  --color-border: rgba(34, 211, 238, 0.18);
+  --color-accent: #f97316;
+  --color-success: #10b981;
+  --backdrop: blur(20px) saturate(1.6);
+  --shadow-card: 0 4px 32px rgba(34, 211, 238, 0.1), 0 1px 6px rgba(0, 0, 0, 0.35);
+  --gradient-accent: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%);
+  --theme-dot: linear-gradient(135deg, #0891b2, #22d3ee);
 }

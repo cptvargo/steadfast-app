@@ -1,32 +1,30 @@
+import { useApp } from "../context/AppContext";
+import AccountabilityCard from "../components/Accountability/AccountabilityCard";
 import Tracker from "../components/Tracker/Tracker";
-import Goals from "../components/Goals/Goals";
-import Scripture from "../components/Scripture/Scripture";
-import Journal from "../components/Journal/Journal";
-import ThemeSwitcher from "../components/UI/ThemeSwitcher";
+
+const TODAY = new Date().toLocaleDateString("en-US", {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+});
 
 export default function Home() {
+  const { userName } = useApp();
+
   return (
-    <main style={styles.main}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>Accountability</h1>
-        <ThemeSwitcher />
+    <div className="page">
+      <header className="app-header">
+        <div>
+          <h1 className="app-title">Steadfast</h1>
+          <p className="app-subtitle">
+            {userName ? `Welcome back, ${userName}` : TODAY}
+          </p>
+          {userName && <p className="app-date">{TODAY}</p>}
+        </div>
       </header>
 
-      <div style={styles.divider} />
-      <Scripture />
-      <div style={styles.divider} />
+      <AccountabilityCard />
       <Tracker />
-      <div style={styles.divider} />
-      <Goals />
-      <div style={styles.divider} />
-      <Journal />
-    </main>
+    </div>
   );
 }
-
-const styles = {
-  main: { maxWidth: "640px", margin: "0 auto", padding: "1rem 1.25rem" },
-  header: { display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", paddingBottom: "0.75rem" },
-  title: { fontSize: "1.4rem", fontWeight: 700, color: "var(--color-primary)" },
-  divider: { height: "1px", background: "var(--color-border)", margin: "0.25rem 0" },
-};
