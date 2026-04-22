@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useApp } from "../../context/AppContext";
 import { ArrowRightIcon } from "../UI/Icons";
+import logoUrl from "/steadfast-logo.png";
 
 export default function Onboarding() {
   const { setUserName } = useApp();
@@ -20,7 +21,7 @@ export default function Onboarding() {
     <div className="onboarding-screen">
       <div className="onboarding-content">
         <img
-          src="/steadfast-logo.png"
+          src={logoUrl}
           alt="Steadfast"
           className="onboarding-logo"
         />
