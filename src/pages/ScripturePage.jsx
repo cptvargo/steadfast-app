@@ -103,7 +103,7 @@ export default function ScripturePage() {
         });
       }
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function saveReflection() {
     saveData(getReflectionKey(today), reflection);
