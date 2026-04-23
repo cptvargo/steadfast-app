@@ -8,6 +8,7 @@ import SettingsPage from "./pages/SettingsPage";
 import BottomNav from "./components/UI/BottomNav";
 import DailyCheckIn from "./components/DailyCheckIn/DailyCheckIn";
 import Onboarding from "./components/Onboarding/Onboarding";
+import UpdateBanner from "./components/UI/UpdateBanner";
 import "./App.css";
 
 function AppShell() {
@@ -40,6 +41,7 @@ export default function App() {
     <AppProvider>
       <Router>
         <AppShell />
+        <UpdateBanner />
       </Router>
     </AppProvider>
   );
