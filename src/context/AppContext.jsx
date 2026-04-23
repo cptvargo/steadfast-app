@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { saveData, getData } from "../utils/storage";
 import { localDateStr } from "../utils/date";
 
@@ -31,6 +31,22 @@ export function AppProvider({ children }) {
   );
   const [checkInDone, setCheckInDone] = useState(isCheckInDone);
   const [skipStreak, setSkipStreakState] = useState(() => getData("checkin_skip_streak") || 0);
+  const activeDateRef = useRef(localDateStr());
+
+  // When the app comes back to the foreground, check if the date rolled over
+  useEffect(() => {
+    function handleVisibility() {
+      if (document.visibilityState !== "visible") return;
+      const today = localDateStr();
+      if (today !== activeDateRef.current) {
+        activeDateRef.current = today;
+        setTodayDataState(getData(`tracker_${today}`) || {});
+        setCheckInDone(!!getData(`daily_checkin_${today}`));
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
 
   function setUserName(name) {
     setUserNameState(name);
