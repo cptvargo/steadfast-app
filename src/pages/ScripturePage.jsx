@@ -69,19 +69,18 @@ function PastReadingRow({ entry }) {
   );
 }
 
-const VERSE_CACHE_KEY  = `daily_verse_${localDateStr()}`;
-const INSIGHT_CACHE_KEY = `verse_insight_${localDateStr()}`;
-
 export default function ScripturePage() {
   const today = localDateStr();
+  const verseCacheKey  = `daily_verse_${today}`;
+  const insightCacheKey = `verse_insight_${today}`;
   const hasApiKey = !!import.meta.env.VITE_ANTHROPIC_API_KEY;
 
   // Seed from cache immediately — no spinner on return visits
-  const [verse,        setVerse]        = useState(() => getData(VERSE_CACHE_KEY) || null);
-  const [verseLoad,    setVerseLoad]    = useState(() => !getData(VERSE_CACHE_KEY));
-  const [insight,      setInsight]      = useState(() => getData(INSIGHT_CACHE_KEY) || null);
-  const [insightLoad,  setInsightLoad]  = useState(() => hasApiKey && !getData(INSIGHT_CACHE_KEY));
-  const [insightTried, setInsightTried] = useState(() => !!getData(INSIGHT_CACHE_KEY));
+  const [verse,        setVerse]        = useState(() => getData(verseCacheKey) || null);
+  const [verseLoad,    setVerseLoad]    = useState(() => !getData(verseCacheKey));
+  const [insight,      setInsight]      = useState(() => getData(insightCacheKey) || null);
+  const [insightLoad,  setInsightLoad]  = useState(() => hasApiKey && !getData(insightCacheKey));
+  const [insightTried, setInsightTried] = useState(() => !!getData(insightCacheKey));
   const [reflection,   setReflection]   = useState(() => getData(getReflectionKey(today)) || "");
   const [saved,        setSaved]        = useState(false);
   const [pastOpen,     setPastOpen]     = useState(false);
@@ -95,7 +94,7 @@ export default function ScripturePage() {
       setVerse(v);
       setVerseLoad(false);
 
-      if (hasApiKey && !getData(INSIGHT_CACHE_KEY)) {
+      if (hasApiKey && !getData(insightCacheKey)) {
         setInsightLoad(true);
         getVerseInsight(v).then((result) => {
           setInsight(result);
