@@ -388,23 +388,220 @@ function getCacheKey() {
   return `daily_verse_${localDateStr()}`;
 }
 
-// Hardcoded fallback pool — used when API.Bible is unavailable
-// Covers 14 days of rotation so the verse always changes daily
+// Hardcoded fallback pool — used when API.Bible is unavailable.
+// Each entry includes the verse plus pre-written insight so the full
+// meditation experience works with zero API dependency.
 const FALLBACK_POOL = [
-  { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", reference: "John 3:16" },
-  { text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.", reference: "Proverbs 3:5-6" },
-  { text: "I can do all this through him who gives me strength.", reference: "Philippians 4:13" },
-  { text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.", reference: "Romans 8:28" },
-  { text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.", reference: "Isaiah 40:31" },
-  { text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.", reference: "Joshua 1:9" },
-  { text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.", reference: "Philippians 4:6" },
-  { text: "Therefore, if anyone is in Christ, the new creation has come: the old has gone, the new is here!", reference: "2 Corinthians 5:17" },
-  { text: "Cast all your anxiety on him because he cares for you.", reference: "1 Peter 5:7" },
-  { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" },
-  { text: "The Lord is my shepherd, I lack nothing.", reference: "Psalm 23:1" },
-  { text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind.", reference: "Romans 12:2" },
-  { text: "Your word is a lamp for my feet, a light on my path.", reference: "Psalm 119:105" },
-  { text: "For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God.", reference: "Ephesians 2:8" },
+  {
+    text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+    reference: "John 3:16",
+    breakdown: "This is the hinge verse of the entire Bible. God didn't send a rule book or a list of requirements — he sent himself, in the form of a person, because love that deep has to show up. The offer is open to everyone, not earned by anyone.",
+    applications: [
+      "Think of someone in your life you find it hard to extend grace to. This verse says God loved the whole world — including them, and including the version of you that doesn't have it together.",
+      "You might be carrying the weight of feeling like you have to earn your place — at work, in your family, with God. This verse says the gift is already given. What would change if you actually believed that today?",
+      "When was the last time love cost you something? Not a feeling, but a real sacrifice. This verse is about action, not sentiment."
+    ],
+    reflectionPrompts: [
+      "What does it mean to you personally that God's love is described as active — he gave — not just a feeling?",
+      "Is there an area of your life where you're still trying to earn something that's already been freely given?",
+      "Who in your world is hardest to love right now, and what would it look like to see them the way this verse says God sees you?"
+    ],
+  },
+  {
+    text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+    reference: "Proverbs 3:5-6",
+    breakdown: "This isn't a verse about blind obedience — it's about humility. It acknowledges that our own reasoning has limits, and that surrendering control to something bigger than our own perspective is actually the wiser move. It promises direction, not ease.",
+    applications: [
+      "You're facing a decision and you keep running the numbers, playing out every scenario. At some point the analysis isn't helping — it's avoiding. This verse is the invitation to let go of the outcome.",
+      "There's a situation in your life right now that doesn't make sense. You can't see how it's going to resolve. Leaning on your own understanding means white-knuckling it. What does trust actually look like in that specific situation?",
+      "Submission sounds like weakness, but it takes more strength to release control than to hold it. Think of a time you tried to force something to work out your way. How did that go?"
+    ],
+    reflectionPrompts: [
+      "What does 'leaning on your own understanding' look like in your daily life — what do you reach for when things get uncertain?",
+      "Is there something you're holding tightly right now that this verse is asking you to loosen your grip on?",
+      "What would trusting God 'with all your heart' actually require of you in your current season?"
+    ],
+  },
+  {
+    text: "I can do all this through him who gives me strength.",
+    reference: "Philippians 4:13",
+    breakdown: "Paul wrote this from prison, not from a mountaintop victory. The 'all things' isn't about achieving anything you set your mind to — it's about enduring anything, including the hard and mundane, because the strength isn't coming from you.",
+    applications: [
+      "You're exhausted and you don't know how you're going to keep showing up. That's exactly the context Paul was in. The strength this verse points to isn't a burst of motivation — it's something steadier.",
+      "There's a task, relationship, or season in front of you that feels beyond what you have to give. What would it look like to approach it not from your own reserves but from a different source?",
+      "We often quote this verse about big goals. But Paul meant it about contentment in scarcity. Where in your life do you need endurance more than achievement right now?"
+    ],
+    reflectionPrompts: [
+      "What are the 'all things' in your life right now that feel impossible — and are they about achievement or about endurance?",
+      "Where are you relying entirely on your own strength, and what might it look like to actually ask for help — from God or from someone around you?",
+      "Paul learned contentment. What is your current season trying to teach you about contentment?"
+    ],
+  },
+  {
+    text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+    reference: "Romans 8:28",
+    breakdown: "This verse doesn't say everything that happens is good — it says God works things toward good. That's a different claim. It requires a longer view than today, and it's meant to be an anchor in suffering, not a dismissal of it.",
+    applications: [
+      "Something happened that hurt you, and someone tried to comfort you with this verse too soon. The comfort in it is real, but it takes time. Where are you in the process of being able to hold both the pain and the promise?",
+      "You can't see how the hard thing you're going through right now could possibly serve anything good. That's okay. This verse is for the view from the other side, and also for the walk through the middle.",
+      "Think of something painful from your past that has since shaped you in a way you're grateful for. That's not a guarantee the current pain resolves the same way — but it's evidence worth sitting with."
+    ],
+    reflectionPrompts: [
+      "Is there something in your life right now that you're struggling to believe could work toward any good? What makes it hard to hold onto that hope?",
+      "What's the difference between believing this verse is true and actually feeling it? Which is harder for you right now?",
+      "Has there been a moment in your past where you've seen this verse come true in your own story? What did that look like?"
+    ],
+  },
+  {
+    text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+    reference: "Isaiah 40:31",
+    breakdown: "Isaiah wrote this to people who were exhausted — exiled, beaten down, wondering if God had forgotten them. The image of eagles isn't about being superhuman. It's about being lifted by something outside yourself when you have nothing left to give.",
+    applications: [
+      "You've been running hard for a long time and you're not sure you have anything left. The invitation in this verse isn't to try harder — it's to stop trying to manufacture your own strength and wait on something bigger to fill you.",
+      "Hoping in the Lord isn't passive resignation. It's an active posture — choosing to orient yourself toward something trustworthy when everything around you feels unstable. What does that look like in your day today?",
+      "Notice the order: soar, then run, then walk. Sometimes renewal looks like walking without fainting, not soaring. Where are you in that progression right now?"
+    ],
+    reflectionPrompts: [
+      "What does 'hoping in the Lord' actually mean to you in practice — what does it look like on a Tuesday morning when you're tired?",
+      "Are you in a soaring season, a running season, or a walking season right now? What does this verse say to you in that specific place?",
+      "What in your life is draining your strength faster than it's being renewed, and what might need to change?"
+    ],
+  },
+  {
+    text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+    reference: "Joshua 1:9",
+    breakdown: "God said this to Joshua right before he had to lead an entire nation into unknown territory. The command to be courageous isn't a suggestion — it's a choice grounded in a promise. Fear is expected. Courage is the response to fear, not the absence of it.",
+    applications: [
+      "There's something you know you need to do that you've been putting off because you're afraid of how it will go. The fear isn't the problem — letting it make the decision is.",
+      "Joshua didn't know how Jericho's walls were going to fall. He just knew he wasn't going alone. What would you attempt if you actually believed you weren't facing it alone?",
+      "Discouragement is quieter than fear — it's the slow erosion of belief that things can change. Where has discouragement crept into your life and started making decisions for you?"
+    ],
+    reflectionPrompts: [
+      "What is the thing you're most afraid of right now, and how is that fear affecting your choices?",
+      "What's the difference between being commanded to be courageous and actually feeling courageous? Which one does this verse ask of you?",
+      "Where in your life do you need to take a step forward even though you can't see what's on the other side?"
+    ],
+  },
+  {
+    text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+    reference: "Philippians 4:6",
+    breakdown: "Paul doesn't say don't feel anxious — he says don't stay there. The prescription is prayer with thanksgiving, which is an act of remembering that God has shown up before. It's redirecting the energy of worry into honest conversation.",
+    applications: [
+      "Your mind has been running the same loop of worry for days. The loop isn't solving anything — it's just keeping you stuck. This verse isn't telling you to ignore the problem. It's offering you somewhere to bring it.",
+      "Thanksgiving in the middle of anxiety sounds counterintuitive. But it's not about pretending things are fine — it's about choosing to notice what is still true and good, even when something is also hard.",
+      "There's a difference between presenting your request and demanding an outcome. What would it look like to honestly tell God what you need today without dictating how it has to be answered?"
+    ],
+    reflectionPrompts: [
+      "What are you most anxious about right now, and have you actually brought it to God in prayer or just thought about it more?",
+      "What would you thank God for today, even in the middle of what's hard? What's still true that's worth acknowledging?",
+      "What's the difference between prayer and worry disguised as prayer? Which one are you doing?"
+    ],
+  },
+  {
+    text: "Therefore, if anyone is in Christ, the new creation has come: the old has gone, the new is here!",
+    reference: "2 Corinthians 5:17",
+    breakdown: "This isn't about pretending the past didn't happen. It's about a fundamental shift in identity — who you are is no longer defined by who you were. The old patterns, the old shame, the old story — they don't get the final word.",
+    applications: [
+      "You keep returning to an old version of yourself — the one who messed up, who couldn't change, who always ends up here. This verse says that identity has been replaced. The question is which one you're living out of.",
+      "Someone in your life is stuck seeing you as who you were before. And sometimes you see yourself that way too. What would it look like to actually believe you're not that person anymore?",
+      "New creation doesn't mean easy. It means different. The trajectory has changed even when the daily struggle still shows up. Where do you see evidence of that in your own life?"
+    ],
+    reflectionPrompts: [
+      "What part of your 'old self' do you find it hardest to let go of — either because you're attached to it or because you don't believe you've actually changed?",
+      "Is there someone in your life you're struggling to see as capable of real change? What does this verse say to that?",
+      "What does 'new creation' actually look like in your life right now — not in theory, but in your daily choices?"
+    ],
+  },
+  {
+    text: "Cast all your anxiety on him because he cares for you.",
+    reference: "1 Peter 5:7",
+    breakdown: "The word 'cast' is active — it's not gently setting something down, it's throwing it. The premise of this verse is that God is not annoyed by your worry, not tired of your needs. He cares. That's the reason you can throw the weight, not just set it politely aside.",
+    applications: [
+      "You've been carrying something for so long that you've started to think it's just part of you. What if you actually threw it — not suppressed it, not managed it, but let go of it in an act of trust?",
+      "It's easy to pray about the big crises. But the low-grade daily anxiety — the background hum of worry about small things — that's what this verse is talking about too. All of it, not just the dramatic stuff.",
+      "Caring implies attentiveness. God isn't fielding your anxiety from a distance. What would it feel like to actually believe he's paying attention to the specific things that are weighing on you today?"
+    ],
+    reflectionPrompts: [
+      "What are you carrying right now that you haven't actually given to God — just thought about giving to God?",
+      "Do you actually believe God cares about the everyday, specific things that worry you? What makes that easy or hard to believe?",
+      "What would your day look like if you started it by casting the weight instead of picking it up and carrying it alone?"
+    ],
+  },
+  {
+    text: "Come to me, all you who are weary and burdened, and I will give you rest.",
+    reference: "Matthew 11:28",
+    breakdown: "Jesus said this to people exhausted by religion — by the endless pressure of performing well enough, being good enough, carrying the weight of expectations they could never fully meet. Rest here isn't just sleep. It's the relief of no longer having to earn your place.",
+    applications: [
+      "You are tired in a way that sleep isn't fixing. It's the kind of tired that comes from striving — from proving yourself, managing how people see you, trying to keep everything together. That's exactly who this invitation is for.",
+      "Coming to Jesus isn't a transaction — it's not 'come and fix yourself, then I'll give you rest.' It's come as you are, burdened, and rest will come from the relationship itself.",
+      "What are you burdened by today that you've been carrying as if it's entirely your responsibility to resolve? What would it mean to bring it to this invitation rather than keep striving?"
+    ],
+    reflectionPrompts: [
+      "What kind of tired are you right now — physical, emotional, spiritual? What is the burden that's heaviest?",
+      "Is there a way you've been trying to earn rest — to get through the to-do list first, to fix the problem first — instead of receiving it as something given?",
+      "What would it actually look like, practically and specifically, to come to Jesus with what you're carrying today?"
+    ],
+  },
+  {
+    text: "The Lord is my shepherd, I lack nothing.",
+    reference: "Psalm 23:1",
+    breakdown: "A shepherd's job is to lead, protect, and provide for sheep who have no ability to navigate on their own. David — who was himself a shepherd — knew exactly what this image meant. The claim isn't that life is easy. It's that you are not without a guide and you are not without provision.",
+    applications: [
+      "You're in a season where you feel like something important is missing — a relationship, security, direction, peace. This verse doesn't deny the feeling. It claims that the deepest need is already met, even when surface needs feel unmet.",
+      "Sheep don't know where they're going. They trust the one leading them. Where in your life are you resisting being led because you'd rather figure out the route yourself?",
+      "David wrote this psalm knowing darkness, danger, and enemies. 'I lack nothing' wasn't written from a comfortable place. It was written as a choice of trust. What does choosing that posture look like for you today?"
+    ],
+    reflectionPrompts: [
+      "What do you feel like you're lacking right now? How does this verse speak to that specific thing?",
+      "What does it mean that the Lord is your shepherd — not just a helper, but a guide responsible for your care?",
+      "Where in your life are you trying to be your own shepherd, leading yourself rather than being led?"
+    ],
+  },
+  {
+    text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind.",
+    reference: "Romans 12:2",
+    breakdown: "Conforming is passive — it happens slowly, by default, without you deciding. Transformation requires something active: a renewed mind. The way you think shapes the way you live. This verse is about becoming someone different from the inside out, not just behaving differently on the outside.",
+    applications: [
+      "There are patterns in your life that you've absorbed from the culture around you — about what success looks like, what you deserve, how to treat people who wrong you — that you've never examined against a different standard. This verse is the invitation to examine them.",
+      "Behavior change without mind change doesn't last. You can white-knuckle a new habit for a while, but the transformation this verse is talking about goes deeper — it changes what you want, not just what you do.",
+      "What is the 'pattern of this world' that has the most pull on you right now? Comfort, approval, achievement, control? What would a renewed mind look like in that specific area?"
+    ],
+    reflectionPrompts: [
+      "What patterns have you absorbed from the culture around you that you've never really questioned?",
+      "What's the difference between conforming and transforming in your own experience? Where do you see evidence of each in your life?",
+      "What does 'renewing your mind' actually mean to you in practice — what habits of thought or attention would it require?"
+    ],
+  },
+  {
+    text: "Your word is a lamp for my feet, a light on my path.",
+    reference: "Psalm 119:105",
+    breakdown: "A lamp for your feet doesn't illuminate the whole road — it shows you the next step. This is a verse for people who want more certainty than they have. The promise isn't a floodlight that reveals everything at once. It's enough light for where you are right now.",
+    applications: [
+      "You want to know how the whole thing is going to play out before you take the next step. Most of us do. But a lamp for your feet means you take the step, then the next step is lit. What step is lit for you right now that you've been waiting to take until you can see further?",
+      "Someone is navigating a hard decision and they want a clear sign before they move. The sign might not come. But the light for the next faithful step might already be there — in something they've read, a conversation they've had, a quiet conviction they keep dismissing.",
+      "There's a difference between guidance and certainty. God offers guidance. We want certainty. This verse is an invitation to walk by the light that's actually given, not wait for a light that may never come."
+    ],
+    reflectionPrompts: [
+      "What is the next step in front of you that you can see, but you're waiting to take until you can see further?",
+      "Where in your life do you feel like you're walking in the dark right now? What small light do you have, even if it's not as much as you'd like?",
+      "How does Scripture actually function as a lamp in your daily life — or does it? What would change if it did?"
+    ],
+  },
+  {
+    text: "For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God.",
+    reference: "Ephesians 2:8",
+    breakdown: "Grace means unearned. The starting point of faith isn't what you bring to God — it's what God brings to you. This verse cuts against every instinct we have to be self-sufficient, to earn our standing, to deserve what we receive. It's a gift. Not a reward.",
+    applications: [
+      "You've been carrying the weight of feeling like you have to be better before God can really use you, or before you deserve to come to him. This verse says the grace came first — before the better version of you showed up.",
+      "Receiving a gift without earning it requires humility. For people who are used to being capable and self-reliant, this is actually one of the harder parts of faith. Where does pride or self-sufficiency make it hard for you to receive?",
+      "If salvation is a gift and not a wage, what does that mean for how you relate to other people? If you didn't earn what you have, what does that do to how you view people who are struggling?"
+    ],
+    reflectionPrompts: [
+      "In what areas of your life do you still operate as if you're earning your standing — with God, with others, with yourself?",
+      "What does it feel like to receive something you didn't earn and can't repay? Is that easy or uncomfortable for you?",
+      "How does the reality of grace change the way you see yourself? How does it change the way you see others?"
+    ],
+  },
 ];
 
 function getDailyFallback() {

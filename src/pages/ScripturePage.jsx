@@ -86,6 +86,11 @@ export default function ScripturePage() {
   const [pastOpen,     setPastOpen]     = useState(false);
   const [pastEntries,  setPastEntries]  = useState([]);
 
+  // Use Claude's insight when available, fall back to pre-bundled verse content
+  const hasBundledContent = !!(verse?.breakdown);
+  const showInsightSections = hasApiKey || hasBundledContent;
+  const displayInsight = insight || (hasBundledContent && !insightLoad ? verse : null);
+
   useEffect(() => {
     // Already cached — nothing to fetch
     if (!verseLoad && !insightLoad) return;
@@ -139,7 +144,7 @@ export default function ScripturePage() {
       </section>
 
       {/* ── AI Breakdown ── */}
-      {hasApiKey && (
+      {showInsightSections && (
         <section className="card insight-card">
           <div className="section-label">What this is saying</div>
           {insightLoad ? (
@@ -148,8 +153,8 @@ export default function ScripturePage() {
               <div className="skeleton-line" style={{ width: "80%" }} />
               <div className="skeleton-line" style={{ width: "87%" }} />
             </div>
-          ) : insight ? (
-            <p className="insight-breakdown">{insight.breakdown}</p>
+          ) : displayInsight ? (
+            <p className="insight-breakdown">{displayInsight.breakdown}</p>
           ) : insightTried ? (
             <p className="insight-error">Could not load reflection for this verse. Check back later.</p>
           ) : null}
@@ -157,7 +162,7 @@ export default function ScripturePage() {
       )}
 
       {/* ── Life Scenarios ── */}
-      {hasApiKey && (
+      {showInsightSections && (
         <section className="card">
           <div className="section-label">Where you might see this</div>
           <p className="insight-subtext">Real moments where this truth shows up — sit with whichever one resonates.</p>
@@ -167,9 +172,9 @@ export default function ScripturePage() {
                 <div key={i} className="skeleton-line" style={{ width: `${w}%` }} />
               ))}
             </div>
-          ) : insight ? (
+          ) : displayInsight ? (
             <ol className="application-list">
-              {insight.applications.map((app, i) => (
+              {displayInsight.applications.map((app, i) => (
                 <li key={i} className="application-item">
                   <span className="application-number">{i + 1}</span>
                   <span className="application-text">{app}</span>
@@ -186,7 +191,7 @@ export default function ScripturePage() {
       <section className="card">
         <div className="section-label">Your reflection</div>
         <div className="reflection-prompts">
-          {(insight?.reflectionPrompts || FALLBACK_PROMPTS).map((p, i) => (
+          {(insight?.reflectionPrompts || verse?.reflectionPrompts || FALLBACK_PROMPTS).map((p, i) => (
             <p key={i} className="reflection-prompt">{p}</p>
           ))}
         </div>
