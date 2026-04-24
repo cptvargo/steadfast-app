@@ -73,6 +73,7 @@ Respond with JSON only (no markdown, no explanation outside the JSON):
     return insight;
   } catch (err) {
     console.warn("Verse insight unavailable:", err.message);
+    saveData("insight_last_error", `${new Date().toISOString()} — ${err.message}`);
     return null;
   }
 }
