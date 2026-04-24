@@ -388,16 +388,38 @@ function getCacheKey() {
   return `daily_verse_${localDateStr()}`;
 }
 
-const FALLBACK = {
-  text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
-  reference: "Proverbs 3:5-6",
-};
+// Hardcoded fallback pool — used when API.Bible is unavailable
+// Covers 14 days of rotation so the verse always changes daily
+const FALLBACK_POOL = [
+  { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", reference: "John 3:16" },
+  { text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.", reference: "Proverbs 3:5-6" },
+  { text: "I can do all this through him who gives me strength.", reference: "Philippians 4:13" },
+  { text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.", reference: "Romans 8:28" },
+  { text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.", reference: "Isaiah 40:31" },
+  { text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.", reference: "Joshua 1:9" },
+  { text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.", reference: "Philippians 4:6" },
+  { text: "Therefore, if anyone is in Christ, the new creation has come: the old has gone, the new is here!", reference: "2 Corinthians 5:17" },
+  { text: "Cast all your anxiety on him because he cares for you.", reference: "1 Peter 5:7" },
+  { text: "Come to me, all you who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" },
+  { text: "The Lord is my shepherd, I lack nothing.", reference: "Psalm 23:1" },
+  { text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind.", reference: "Romans 12:2" },
+  { text: "Your word is a lamp for my feet, a light on my path.", reference: "Psalm 119:105" },
+  { text: "For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God.", reference: "Ephesians 2:8" },
+];
+
+function getDailyFallback() {
+  return FALLBACK_POOL[getDailyIndex() % FALLBACK_POOL.length];
+}
 
 export async function getDailyScripture() {
   const cached = getData(getCacheKey());
   if (cached) return cached;
 
-  if (!API_KEY) return FALLBACK;
+  if (!API_KEY) {
+    const fallback = getDailyFallback();
+    saveData(getCacheKey(), fallback);
+    return fallback;
+  }
 
   const [passageId, reference] = VERSE_POOL[getDailyIndex()];
 
@@ -427,6 +449,8 @@ export async function getDailyScripture() {
     return verse;
   } catch (err) {
     console.warn("Bible API unavailable:", err.message);
-    return FALLBACK;
+    const fallback = getDailyFallback();
+    saveData(getCacheKey(), fallback);
+    return fallback;
   }
 }
